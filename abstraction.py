@@ -26,6 +26,6 @@ class Dog(Animal):
 # Creating an object
 dog_obj = Dog()
 
-# Using methods from both parent and child classes
-print(dog_obj.show_info())  # Output: The dog is an animal
-print("Sound:", dog_obj.make_sound())  # Output: Sound: Woof!
+# Using the methods
+print(dog_obj.show_info())
+print("Sound:", dog_obj.make_sound())
