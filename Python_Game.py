@@ -79,14 +79,14 @@ def score(nice,mean,name):
 def win(nice,mean,name):
     # Substitute the {} wildcards with our varibale values
     print("\nNice job {}, you win! \nEveryone loves you and you've \nmade lots of friends along the way!".format(name))
-    play_win_sound()
+    play_win.sound()
     # call again function and pass in our variables
     again(nice,mean,name)
 
 def lose(nice,mean,name):
     # Substitute the {} wildcards with our varibale values
     print("\nAhhh too bad, game over! \n{}, you live in a dirty beat-up \nvan by the river, wretched and alone!".format(name))
-    play_lose_sound()
+    play_lose.sound()
     # call again function and pass in our variables
     again(nice,mean,name)
 
@@ -103,15 +103,15 @@ def again(nice,mean,name):
             stop = False
             quit()
         else:
-            print("\nEnter ( Y ) for 'Yes', ( N ) for 'NO':\n>>> ")\
-                           
+            print("\nEnter ( Y ) for 'Yes', ( N ) for 'NO':\n>>> ")
 def reset(nice,mean,name):
     nice = 0
     mean = 0
     #Notice, I dont not reset the name varaible as that same user has elected to play again
     start(nice,mean,name)
 
-
+pygame.time.wait(2000)  # Wait for 2 seconds before quitting
+pygame.mixer.quit()
     
 
 if __name__ == "__main__":
