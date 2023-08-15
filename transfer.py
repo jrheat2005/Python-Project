@@ -1,9 +1,11 @@
+# importing
 import tkinter as tk
 from tkinter import *
 import os, shutil
 from datetime import timedelta, datetime
 from tkinter import filedialog
 
+# button creating and layout
 class ParentWindow(Frame):
     def __init__(self, master):
         Frame.__init__(self)
@@ -22,17 +24,17 @@ class ParentWindow(Frame):
 
         transfer_btn = Button(text="Transfer Files", width=20, command=self.transferFiles)
         transfer_btn.grid(row=2, column=1, padx=(200, 0), pady=(0, 15))
-
+    # source function
     def sourceDir(self):
         selectSourceDir = filedialog.askdirectory()
         self.source_dir.delete(0, END)
         self.source_dir.insert(0, selectSourceDir)
-
+    # destination function
     def destDir(self):
         selectDestDir = filedialog.askdirectory()
         self.destination_dir.delete(0, END)
         self.destination_dir.insert(0, selectDestDir)
-
+    # file transfer and time check function
     def transferFiles(self):
         source_path = self.source_dir.get()
         dest_path = self.destination_dir.get()
