@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import *
-import tkinter.filedialog, os, shutil
+import os, shutil
+from datetime import timedelta, datetime
+from tkinter import filedialog
 
 class ParentWindow(Frame):
     def __init__(self, master):
@@ -18,34 +20,42 @@ class ParentWindow(Frame):
         self.destination_dir = Entry(width=75)
         self.destination_dir.grid(row=1, column=1, columnspan=2, padx=(20, 10), pady=(15, 0))
 
-        self.transfer_btn = Button(text="Transfer Files", width=20, command=self.transferFiles)
-        self.transfer_btn.grid(row=2, column=1, padx=(200, 0), pady=(0, 15))
-
-        self.exit_btn = Button(text="Exit", width=20, command=self.exit_program)
-        self.exit_btn.grid(row=2, column=2, padx=(10, 40), pady=(0, 15))
+        transfer_btn = Button(text="Transfer Files", width=20, command=self.transferFiles)
+        transfer_btn.grid(row=2, column=1, padx=(200, 0), pady=(0, 15))
 
     def sourceDir(self):
-        selectSourceDir = tkinter.filedialog.askdirectory()
+        selectSourceDir = filedialog.askdirectory()
         self.source_dir.delete(0, END)
         self.source_dir.insert(0, selectSourceDir)
 
     def destDir(self):
-        selectDestDir = tkinter.filedialog.askdirectory()
+        selectDestDir = filedialog.askdirectory()
         self.destination_dir.delete(0, END)
         self.destination_dir.insert(0, selectDestDir)
 
     def transferFiles(self):
-        source = self.source_dir.get()
-        destination = self.destination_dir.get()
-        source_files = os.listdir(source)
-        for i in source_files:
-            shutil.move(source + '/' + i, destination)
-            print(i + ' was succesfully transforerred.')
+        source_path = self.source_dir.get()
+        dest_path = self.destination_dir.get()
 
-    def exit_program(self):
-        root.destroy()
-        
+        current_time = datetime.now()
 
+        files_to_transfer = []
+        for filename in os.listdir(source_path):
+            file_path = os.path.join(source_path, filename)
+
+            file_modification_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+
+            time_difference = current_time - file_modification_time
+
+
+            if time_difference.total_seconds() <= 24 * 60 * 60:
+                files_to_transfer.append(filename)
+
+        for filename in files_to_transfer:
+            source_file_path = os.path.join(source_path, filename)
+            dest_file_path = os.path.join(dest_path, filename)
+            shutil.move(source_file_path, dest_file_path)
+            print(f"Transferred: {filename}")
 
 if __name__ == "__main__":
     root = tk.Tk()
