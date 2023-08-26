@@ -13,7 +13,7 @@ This project funcations as a phone book for a user. It saves a contact's name, p
 in a database and allows the user to update delete previously stored entries.
 
 Check Files Gui:
-This Project allows the user to choose tranfer all.txt files one chosen directory to another. All files that
+This project allows the user to choose tranfer all.txt files one chosen directory to another. All files that
 are moved will be safved in a database.
 
 Checkbook App:
