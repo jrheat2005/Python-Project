@@ -18,5 +18,5 @@ are moved will be safved in a database.
 
 Checkbook App:
 This project functions as a banking app allowing the user to create accounts make deposits and withdrawals 
-and stores that in a database. It also allows them to check the transaction history and pick between which
+and stores that information in a database. It also allows them to check the transaction history and pick between which
 account to view.
